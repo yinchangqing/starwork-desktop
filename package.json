@@ -6,7 +6,7 @@
   "author": "StarWork",
   "repository": {
     "type": "git",
-    "url": "https://github.com/<OWNER>/<REPO>.git"
+    "url": "https://github.com/yinchangqing/starwork-desktop.git"
   },
   "main": "main.js",
   "private": true,
