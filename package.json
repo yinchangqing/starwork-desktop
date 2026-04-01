@@ -1,7 +1,7 @@
 {
   "name": "starwork-desktop",
   "productName": "StarWork",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "StarWork desktop wrapper for 日程.HTML",
   "author": "StarWork",
   "repository": {
