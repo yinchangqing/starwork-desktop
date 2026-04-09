@@ -1173,18 +1173,29 @@
             }
         ];
 
+        function readJsonFromStorage(key, fallbackValue) {
+            try {
+                const raw = localStorage.getItem(String(key || ''));
+                if (raw === null || raw === undefined) return fallbackValue;
+                const v = JSON.parse(raw);
+                return (v === null || v === undefined) ? fallbackValue : v;
+            } catch (e) {
+                return fallbackValue;
+            }
+        }
+
         // 本地存储拉取 (v13版兼容极客空间)
-        let tasks = JSON.parse(localStorage.getItem('yincq_tasks_ai_v13')) || initialTasks;
-        let dailyLogs = JSON.parse(localStorage.getItem('yincq_logs_ai_v13')) || initialLogs;
-        let sysSettings = JSON.parse(localStorage.getItem('yincq_sys_settings_v13')) || { username: '尹长青', logo: '', keyDS: '', keyQwen: '', qwWebSearch: false, qwSearchStrategy: 'max', qwForcedSearch: true, ragEmbeddings: true, ragRerank: false, defaultPersonaId: 'engineer_manager', qwEmbedModel: 'text-embedding-v3', qwEmbedDim: 512 };
-        let journalEntries = JSON.parse(localStorage.getItem('yincq_journals_v13')) || [];
-        let aiBoardReports = JSON.parse(localStorage.getItem('yincq_ai_board_v13')) || [];
+        let tasks = readJsonFromStorage('yincq_tasks_ai_v13', []);
+        let dailyLogs = readJsonFromStorage('yincq_logs_ai_v13', []);
+        let sysSettings = readJsonFromStorage('yincq_sys_settings_v13', { username: '尹长青', logo: '', keyDS: '', keyQwen: '', qwWebSearch: false, qwSearchStrategy: 'max', qwForcedSearch: true, ragEmbeddings: true, ragRerank: false, defaultPersonaId: 'engineer_manager', qwEmbedModel: 'text-embedding-v3', qwEmbedDim: 512 });
+        let journalEntries = readJsonFromStorage('yincq_journals_v13', []);
+        let aiBoardReports = readJsonFromStorage('yincq_ai_board_v13', []);
         const BIRTHDAYS_KEY = 'yincq_birthdays_v13';
-        let birthdays = JSON.parse(localStorage.getItem(BIRTHDAYS_KEY)) || [];
+        let birthdays = readJsonFromStorage(BIRTHDAYS_KEY, []);
         const WORK_REPORT_HISTORY_KEY = 'yincq_work_report_history_v13';
-        let workReportHistory = JSON.parse(localStorage.getItem(WORK_REPORT_HISTORY_KEY)) || [];
+        let workReportHistory = readJsonFromStorage(WORK_REPORT_HISTORY_KEY, []);
         const CORE_NOTES_KEY = 'yincq_core_notes_v13';
-        let coreNotes = JSON.parse(localStorage.getItem(CORE_NOTES_KEY)) || [];
+        let coreNotes = readJsonFromStorage(CORE_NOTES_KEY, []);
         const RAG_DB_NAME = 'yincq_rag_v13';
         const RAG_DB_STORE = 'rag_chunks';
         let ragDbPromise = null;
@@ -1192,8 +1203,8 @@
         const AI_PROFILE_TUNE_KEY = 'yincq_ai_profile_tune_v13';
         const GEEK_PROFILE_ID_KEY = 'yincq_geek_profile_id_v13';
         const ARCHIVE_PROFILE_ID_KEY = 'yincq_archive_profile_id_v13';
-        let aiProfiles = JSON.parse(localStorage.getItem(AI_PROFILES_KEY)) || [];
-        let aiProfileTune = JSON.parse(localStorage.getItem(AI_PROFILE_TUNE_KEY)) || { extra: '' };
+        let aiProfiles = readJsonFromStorage(AI_PROFILES_KEY, []);
+        let aiProfileTune = readJsonFromStorage(AI_PROFILE_TUNE_KEY, { extra: '' });
         let geekProfileId = String(localStorage.getItem(GEEK_PROFILE_ID_KEY) || '');
         let archiveProfileId = String(localStorage.getItem(ARCHIVE_PROFILE_ID_KEY) || '');
 
