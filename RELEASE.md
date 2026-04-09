@@ -26,8 +26,8 @@ $pfxPath = "C:\path\to\cert.pfx"
 
 1. 修改 [package.json](file:///c:/Users/40925/OneDrive/%E6%A1%8C%E9%9D%A2/%E6%97%A5%E7%A8%8B/package.json) 的 `version`。
 2. 打 tag 并 push（示例：v0.1.1）：
-   - `git tag v0.1.1`
-   - `git push origin v0.1.1`
+   - `git tag v0.1.2`
+   - `git push origin v0.1.2`
 3. GitHub Actions 工作流会自动运行并把以下产物上传到对应 Release：
    - Windows NSIS 安装包（.exe）
    - `latest.yml`（更新元数据）
